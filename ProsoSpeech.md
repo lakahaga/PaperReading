@@ -85,7 +85,7 @@
 
 1. Overall architecture
 
-   <img src="../image/prosoArchi.png" width=70%>
+   <img src="./image/prosoArchi.png" width=70%>
 
 #### Prosody encoder
 
@@ -188,7 +188,7 @@
 
 ### Result
 
-<img src ="../image/prosoResult.png" width=70%>
+<img src ="./image/prosoResult.png" width=70%>
 
 
 
