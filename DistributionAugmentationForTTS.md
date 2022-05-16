@@ -74,7 +74,7 @@ WER과 PER 모두 줄어든 것을 확인할 수 있었다.
   
   * 2,3번 문제를 해결하는 방법
   
-    <img src="../image/distAugTTSFig3.png" alt="distAugTTSFig3" width="25%" height ="25%" align="left"/>
+    <img src="./image/distAugTTSFig3.png" alt="distAugTTSFig3" width="25%" height ="25%" align="left"/>
   
     
   
@@ -90,7 +90,7 @@ WER과 PER 모두 줄어든 것을 확인할 수 있었다.
 
 * HOW?
 
-  <img src ="../image/constsubstiute.png" width=50% align=left>
+  <img src ="./image/constsubstiute.png" width=50% align=left>
 
   * non-terminal Node를 다시 쓰는 방식이다.
   * 구체적으로, 같은 코퍼스에 있는 다른 문장에 있는 subtree로 대체하는 것이다. 
@@ -126,22 +126,22 @@ WER과 PER 모두 줄어든 것을 확인할 수 있었다.
 
 1. Attentive model
 
-   <img src="../image/attenWER.png" width=50% align="left">
+   <img src="./image/attenWER.png" width=50% align="left">
 
    * 10h, 5h 모두 baseline에 비해 WER,PER가 내려감. 
    * Robustness가 올라간 것을 확인 할 수 있음.
    * 음성인식 모델을 뭘 썼는지는 확인할 수 없음. 10h에 비해 5h가 더 낮은데, 이건 stochasticity of training the models, selecting the data, and running the robustness analyses라고 함.
 
-   <img src="../image/attenTestLoss.png" width=50% align="left">
+   <img src="./image/attenTestLoss.png" width=50% align="left">
 
    * baseline에 비해 test loss가 적음 ->제안한 데이터 증강 방식이 overfitting을 방지하는 것을 알 수 있음
      * ~~데이터가 많아 졌으니까 당연한거 아냐? 라고 할 수 있지만, 기존 데이터의 성격을 유지하면서도 다양성을 높였기 때문에 test loss도 줄였다는 건가?~~
    
 1. Non-attentive model
 
-   <img src="../image/nonResult.png" width=50% align="left">
+   <img src="./image/nonResult.png" width=50% align="left">
 
-   <img src="../image/nonAblation.png" width=50% align="left">
+   <img src="./image/nonAblation.png" width=50% align="left">
    
    
 
