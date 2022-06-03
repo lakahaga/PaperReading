@@ -51,7 +51,7 @@
 
 ## Model Architecture
 
-![prosody speech architecture](../image/prosodyspeech.png)
+![prosody speech architecture](./image/prosodyspeech.png)
 
 #### Encoder, Decoder
 
@@ -93,11 +93,11 @@
   * 때문에 small conditional network를 이용하여 speaker characteristics로 γ, β 를 정할 수 있으면 
   * 새로운 목소리로 adaptation을 할 때 그 비용을 줄이면서도 좋은 품질의 음성을 유지할 수 있다. 
 
-  <img src="../image/conditionallayernorm.png" alt="conditional layer normalization" style="zoom:50%;" />
+  <img src="./image/conditionallayernorm.png" alt="conditional layer normalization" style="zoom:50%;" />
 
 #### Length Regulator, Pitch Predictor
 
-<img src ="../image/prosody_LengthRegulator.png" >
+<img src ="./image/prosody_LengthRegulator.png" >
 
 * Length Regulator: Ground Truth phoneme duration을 사용해서 phone-level F_context를 frame-level F_context로 upsample
 * Pitch predictor: 훈련 시 predicted phone-averaged F_pitch with Tanh activation을 사용
@@ -117,11 +117,11 @@
 
   * 2 linear layers with 512 hidden units -> Elu(Exponential Linear Unit) activation -> 1 linear layer with 1 hidden unit -> Tanh activation
 
-    <img src="../image/elu.png" alt="elu" style="zoom: 50%;" />
+    <img src="./image/elu.png" alt="elu" style="zoom: 50%;" />
 
   
 
-  * <img src="../image/MISTequation.png" alt="MIST" style="zoom:50%;" />
+  * <img src="./image/MISTequation.png" alt="MIST" style="zoom:50%;" />
     * M is MIST estimator
     * 위의 수식은 Y와 Z의 mutual information을 estimate한다. 이를 Estimate하는 방법는 gradient descent를 통해 lower bound를 maximize하는 것이다. 
     * 따라서 이는 min-max problem으로 정의할 수 있다.
@@ -136,7 +136,7 @@
 
 * multi-head attention으로 구성
 
-  <img src="../image/prosodyattention.png" alt="prosody distributor attention" style="zoom:50%;" />
+  <img src="./image/prosodyattention.png" alt="prosody distributor attention" style="zoom:50%;" />
 
   * F_prosody_set : pretrained Prosody Extractor가 multiple reference speech를 이용하여 생성한 prosody exemplars
   * attention head = 4 , attention dimension = 384
@@ -159,7 +159,7 @@
    * reconstruction loss + Structural Similarity loss(SSIM) + phone-level duration loss 
      * λ1 = 3.0, λ2= 1.0
 
-   <img src="../image/firstlossfunction.png" alt="first loss fuction" style="zoom:50%;" />
+   <img src="./image/firstlossfunction.png" alt="first loss fuction" style="zoom:50%;" />
 
 2. Prosody Extractor, F_pitch 추가
 
@@ -169,12 +169,12 @@
    * P1 loss에 pitch loss, MIST estimator obejective 추가
      * λ1 = 2.0, λ2= 1.0, λ3= 1.0, λ4= 1.0
 
-   <img src="../image/secondlossfunction.png" alt="second loss fuction" style="zoom:50%;" />
+   <img src="./image/secondlossfunction.png" alt="second loss fuction" style="zoom:50%;" />
 
    * F_context^s = random sample of context feature, 각 training step 마다 mutual information을 구하기 위해 사용
    * MIST estimator 훈련 objective
      * mutual information lower bound maximizing
-     * optimize <img src="../image/mistoptimization.png" alt="mist optimization" style="zoom:33%;" />
+     * optimize <img src="./image/mistoptimization.png" alt="mist optimization" style="zoom:33%;" />
      * ReLU는 non-negative value를 얻기 위해 추가
 
 3. Prosody distributor를 추가
@@ -187,7 +187,7 @@
 
      * λ1 = 1.0, λ2= 1.0
 
-     <img src="../image/thirdlossfunction.png" alt="third loss function" style="zoom:50%;" />
+     <img src="./image/thirdlossfunction.png" alt="third loss function" style="zoom:50%;" />
 
 #### Fine-tuning
 
@@ -197,7 +197,7 @@
 
 * Discriminator 훈련을 위해 WGAN-GP를 사용
 
-  * discriminator는 <img src="../image/discriminatorobjective.png" alt="discriminator objective" style="zoom:33%;" /> optimize하도록 훈련한다.
+  * discriminator는 <img src="./image/discriminatorobjective.png" alt="discriminator objective" style="zoom:33%;" /> optimize하도록 훈련한다.
   * 이때 L_gp는 gradient penalty regularization을 의미하고, β는 10으로 설정한다. 
 
 * Fine-tuning stage의 loss function
@@ -205,7 +205,7 @@
   * Step 2 loss function에 adversarial loss를 더한 것과 같다.
     * λ1 = 3.0, λ2= 1.0, λ3= 0.1, λ4= 1.0, λ5= 0.1 * L_recons
 
-  <img src="../image/finetuneloss.png" alt="fine tune loss" style="zoom:50%;" />
+  <img src="./image/finetuneloss.png" alt="fine tune loss" style="zoom:50%;" />
 
 
 
@@ -246,32 +246,32 @@
   * sad, angry speech
   * Prosodyspeech의 spectrogram에서 high frequency harmonics가 더 잘 구현되고, fundamental frequency가 더 abundant and natural함을 알 수 있다.
 
-  <img src="../image/prosodyResult1.png" alt="result1" style="zoom: 67%;" />
+  <img src="./image/prosodyResult1.png" alt="result1" style="zoom: 67%;" />
 
 * attention head 비교
 
   * 왼쪽 : 거의 비슷한 reference audio하나를 줬을 때
   * 오른쪽: 다른 여러개의 reference audio를 줬을 때 
 
-  ![result2](../image/prosodyResult2.png)
+  ![result2](./image/prosodyResult2.png)
 
 * Expressive TTS의 MOS score
 
   * style마다 75개의 문장을 20명의 평가자가 평가
 
-  ![result3](../image/prosodyResult3.png)
+  ![result3](./image/prosodyResult3.png)
 
 * Few-shot personalized TTS 
 
   * voice 마다 45개의 문장을 평가
 
-  ![result4](../image/prosodyResult4.png)
+  ![result4](./image/prosodyResult4.png)
 
 * Ablation Study
 
   * pitch를 없앴을 때가 제일 차이가 많이 난다.
 
-  <img src="../image/prosodyResult5.png" alt="result5" style="zoom:50%;" />
+  <img src="./image/prosodyResult5.png" alt="result5" style="zoom:50%;" />
 
 ## Conclusion
 
