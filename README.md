@@ -23,3 +23,4 @@
 |Prosospeech: Enhancing Prosody with Quantized Vector Pre-training in Text-To-Speech | [Paper](https://arxiv.org/pdf/2202.07816.pdf) || TTS| [VectorQuantization](https://datacrew.tech/vector-quantization) |
 |Unsupervised Style and Content Separation by Minimizing Mutual Information for Speech Synthesis| [Paper](https://arxiv.org/pdf/2003.06227.pdf) || TTS|  |
 |ProsodySpeech: Towards Advanced Prosody Model for Neural Text-To-Speech| [Paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9746744) || TTS| [MIST](https://arxiv.org/pdf/2003.06227.pdf),[AdaSpeech](https://arxiv.org/pdf/2103.00993.pdf), [Korean Singing Voice System](https://arxiv.org/pdf/1908.01919.pdf)|
+|AdaSpeech: Adaptive Text to Speech for Custom Voice| [Paper](https://arxiv.org/pdf/2103.00993.pdf) |[Code](https://github.com/rishikksh20/AdaSpeech)| TTS| |
